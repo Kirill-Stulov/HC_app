@@ -1,0 +1,11 @@
+{
+  "commands": {
+    "all": {
+      "prompt": "see_all",
+      "context": {
+        "codebase": "HC_email"
+      },
+      "description": "scan_all"
+    }
+  }
+}

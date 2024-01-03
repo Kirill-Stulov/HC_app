@@ -1,0 +1,18 @@
+body{
+  background-color: rgb(235, 235, 235);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+#statusBtn {
+  color: black;
+  background-color: grey;
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

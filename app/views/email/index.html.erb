@@ -1,0 +1,30 @@
+<!-- index.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Status Checker</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'email', media: 'all' %>
+  
+  <%= javascript_include_tag 'email' %>
+</head>
+<body>
+  <table id="scheduleTable">
+    <!-- This is where the table from the schedule.html.erb file will appear -->
+    <%= render partial: 'email/schedule' %>  
+  </table>
+
+  <div class="container">
+    <%= form_tag(send_email_path, method: :post, id: 'emailForm') do %>
+      <%= text_field_tag :to, 'hc@umpt.uz', placeholder: 'Enter recipient email', readonly: true %> <!-- Make the input field read-only with the specified email address -->
+      <%= button_tag 'Send Email', id: 'sendEmailBtn' %>
+      <%= button_tag 'Status', id: 'statusBtn', disabled: true %>
+    <% end %>
+  </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,61 @@
+html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Schedule</title>
+    <%= stylesheet_link_tag 'schedule', media: 'all' %>
+    <%= javascript_include_tag 'schedule' %>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Schedule</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Person 1</th>
+            <th>Person 2</th>
+            <th>Person 3</th>
+            <%# Add more columns for more people %>
+          </tr>
+        </thead>
+        <tbody>
+          <% (Date.today - 7..Date.today + 7).each do |date| %>
+            <tr>
+              <td><%= date.strftime("%b %d, %Y") %></td>
+              <td><%= get_person_duty(date, "person1") %></td>
+              <td><%= get_person_duty(date, "person2") %></td>
+              <td><%= get_person_duty(date, "person3") %></td>
+              <%# Add more columns for more people %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= form_tag save_schedule_path, method: :post do %>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Person 1</th>
+              <th>Person 2</th>
+              <th>Person 3</th>
+              <%# Add more columns for more people %>
+            </tr>
+          </thead>
+          <tbody>
+            <% (Date.today..Date.today + 7).each do |date| %>
+              <tr>
+                <td><%= date.strftime("%b %d, %Y") %></td>
+                <td><%= text_field_tag "person1[#{date}]", get_person_duty(date, "person1") %></td>
+                <td><%= text_field_tag "person2[#{date}]", get_person_duty(date, "person2") %></td>
+                <td><%= text_field_tag "person3[#{date}]", get_person_duty(date, "person3") %></td>
+                <%# Add more columns for more people %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag "Save Schedule" %>
+      <% end %>
+    </div>
+  </body>
+</html>
