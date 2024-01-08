@@ -1,0 +1,2 @@
+# HC_app
+app_for_automatic_health_checks
